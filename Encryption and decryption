@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main()
+{
+    int n, i, ack;
+
+    printf("Enter number of frames: ");
+    scanf("%d", &n);
+
+    for(i = 1; i <= n; i++)
+    {
+        printf("\nSender: Sending Frame %d\n", i);
+
+        printf("Enter 1 for ACK received, 0 for ACK not received: ");
+        scanf("%d", &ack);
+
+        if(ack == 1)
+        {
+            printf("Receiver: Frame %d received\n", i);
+            printf("Receiver: Sending ACK %d\n", i);
+            printf("Sender: ACK received\n");
+        }
+        else
+        {
+            printf("ACK not received!\n");
+            printf("Sender: Retransmitting Frame %d\n", i);
+
+            printf("Receiver: Frame %d received\n", i);
+            printf("Receiver: Sending ACK %d\n", i);
+            printf("Sender: ACK received\n");
+        }
+    }
+
+    printf("\nAll frames transmitted successfully!");
+
+    return 0;
+}
