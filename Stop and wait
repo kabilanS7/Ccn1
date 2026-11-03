@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+
+void main()
+{
+    int frames, i, ack, received;
+    clrscr();
+    printf("\t STOP AND WAIT PROTOCOL\n\n");
+    printf("Enter the total number of frames: ");
+    scanf("%d", &frames);
+    printf("\n");
+
+    for (i = 1; i <= frames; i++)
+    {
+        ack = 0;
+        received = 0;
+        while (ack == 0)
+        {
+            printf("Sender   : Sending frame %d\n", i);
+            if (rand() % 4 == 0)
+            {
+                printf("Network  : Frame %d lost\n", i);
+                printf("Sender   : Timeout, retransmitting frame %d\n", i);
+            }
+            else
+            {
+                if (received == 1)
+                    printf("Receiver : Duplicate frame %d discarded\n", i);
+                else
+                    printf("Receiver : Frame %d received\n", i);
+                received = 1;
+
+                if (rand() % 4 == 0)
+                {
+                    printf("Network  : ACK %d lost\n", i);
+                    printf("Sender   : Timeout, retransmitting frame %d\n", i);
+                }
+                else
+                {
+                    printf("Sender   : ACK %d received\n", i);
+                    ack = 1;
+                }
+            }
+        }
+        printf("-----------------------------------------\n");
+    }
+    printf("\nAll %d frames sent successfully.\n", frames);
+    getch();
+}
+
